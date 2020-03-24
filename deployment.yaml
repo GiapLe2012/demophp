@@ -34,7 +34,7 @@ spec:
         image: giaple/demogo:latest
         ports:
         - containerPort: 80
-      volumes:
-      - name: demo
-        persistentVolumeClaim:
-          claimName: demo
+#      volumes:
+#      - name: demo
+#        persistentVolumeClaim:
+#          claimName: demo
