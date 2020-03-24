@@ -34,3 +34,7 @@ spec:
         image: giaple/demogo:latest
         ports:
         - containerPort: 80
+      volumes:
+      - name: php-pvc
+        persistentVolumeClaim:
+          claimName: php-pvc
