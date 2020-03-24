@@ -15,7 +15,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    sh "docker login -u giaple -p P@ssw0rd123456"
+                    sh "docker login -u $username -p $password"
                     myapp = docker.build("giaple/demogo:${env.BUILD_ID}")
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker login -u giaple -p P@ssw0rd123456
+                    docker login -u $username -p $password
                     docker push giaple/demogo:${env.BUILD_ID}
                     docker rmi giaple/demogo:${env.BUILD_ID}
                     """
