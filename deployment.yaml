@@ -35,6 +35,6 @@ spec:
         ports:
         - containerPort: 80
       volumes:
-      - name: php-pvc
+      - name: demo
         persistentVolumeClaim:
-          claimName: php-pvc
+          claimName: demo
