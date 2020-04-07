@@ -1,55 +1,37 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: php-example-1-service
+  name: php-example-service
 spec:
   selector:
-    app: php-example-1
+    app: php-example
   type: NodePort
   ports:
     - protocol: TCP
-      port: 9325
-      targetPort: 9325
+      port: 80
+      targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php-example-1
+  name: php-example
   namespace: giaplv-demo
   labels:
-    app: php-example-1
+    app: php-example
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: php-example-1
+      app: php-example
   template:
     metadata:
       labels:
-        app: php-example-1
+        app: php-example
     spec:
       imagePullSecrets:
       - name: pipeline-docker-registry
       containers:
-      - env: 
-        - name: CID
-          value: vn
+      - name: php
         image: giaple/demogo:latest
-        imagePullPolicy: Always
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /healthcheck
-            port: 9325
-            scheme: HTTP
-          initialDelaySeconds: 200
-          periodSeconds: 2
-          successThreshold: 1
-          timeoutSeconds: 2
-        name: te-k8s-php-example-1
         ports:
-        - containerPort: 9325
-#      volumes:
-#      - name: demo
-#        persistentVolumeClaim:
-#          claimName: demo
+        - containerPort: 80
