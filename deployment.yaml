@@ -29,10 +29,9 @@ spec:
     metadata:
       labels:
         app: php-example-1
-  spec:
-    imagePullSecrets:
-    - name: pipeline-docker-registry
     spec:
+      imagePullSecrets:
+      - name: pipeline-docker-registry
       containers:
       - env: 
         - name: CID
