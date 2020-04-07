@@ -9,7 +9,7 @@ spec:
   ports:
     - protocol: TCP
       port: 9325
-      targetPort: 30325
+      targetPort: 9325
 ---
 apiVersion: apps/v1
 kind: Deployment
