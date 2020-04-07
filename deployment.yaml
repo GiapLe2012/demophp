@@ -8,8 +8,8 @@ spec:
   type: NodePort
   ports:
     - protocol: TCP
-      port: 9324
-      targetPort: 30324
+      port: 9325
+      targetPort: 30325
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,7 +40,7 @@ spec:
           failureThreshold: 3
           httpGet:
             path: /healthcheck
-            port: 9324
+            port: 9325
             scheme: HTTP
           initialDelaySeconds: 200
           periodSeconds: 2
@@ -48,7 +48,7 @@ spec:
           timeoutSeconds: 2
         name: te-k8s-php-example-1
         ports:
-        - containerPort: 9324
+        - containerPort: 9325
 #      volumes:
 #      - name: demo
 #        persistentVolumeClaim:
