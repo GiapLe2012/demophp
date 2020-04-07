@@ -15,7 +15,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: php-example
-  namespace: giaplv-demo
   labels:
     app: php-example
 spec:
