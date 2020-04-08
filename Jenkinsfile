@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker login -u giaple -p P@ssw0rd123456
+                    docker login -u $user_registry -p $password_registry
                     docker push giaple/demogo:${env.BUILD_ID}
                     docker rmi giaple/demogo:${env.BUILD_ID}
                     """
