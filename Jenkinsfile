@@ -15,7 +15,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    sh "docker login -u $userregistry -p $password_registry"
+                    sh "docker login -u $user_registry -p $password_registry"
                     myapp = docker.build("giaple/demogo:${env.BUILD_ID}")
                 }
             }
