@@ -1,14 +1,14 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: php-example-1-service
+  name: php-example-2-service
   namespace: giaplv-demo
 spec:
   selector:
-    app: php-example-1
+    app: php-example-2
   type: NodePort
   ports:
-  - nodePort: 30324
+  - nodePort: 30326
     port: 80
     protocol: TCP
     targetPort: 80
@@ -16,19 +16,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php-example-1
+  name: php-example-2
   namespace: giaplv-demo
   labels:
-    app: php-example-1
+    app: php-example-2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: php-example-1
+      app: php-example-2
   template:
     metadata:
       labels:
-        app: php-example-1
+        app: php-example-2
     spec:
       imagePullSecrets:
       - name: pipeline-docker-registry
@@ -41,14 +41,14 @@ spec:
         livenessProbe:
           failureThreshold: 3
           httpGet:
-            path: /healthcheck
+            path: /
             port: 80
             scheme: HTTP
           initialDelaySeconds: 200
           periodSeconds: 2
           successThreshold: 1
           timeoutSeconds: 2
-        name: te-k8s-php-example-1
+        name: te-k8s-php-example-2
         ports:
         - containerPort: 80
 
