@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh "docker login -u $user_registry -p $password_registry"
-                    myapp = docker.build("giaple/demogo:$(awk -F":" '{print $NF}' version) .")
+                    myapp = docker.build("giaple/demogo:${env.BUILD_ID}")
                 }
             }
         }
@@ -25,15 +25,15 @@ pipeline {
                 script {
                     sh """
                     docker login -u $user_registry -p $password_registry
-                    docker push giaple/demogo:$(awk -F":" '{print $NF}' version) .
-                    docker rmi giaple/demogo:$(awk -F":" '{print $NF}' version) .
+                    docker push giaple/demogo:${env.BUILD_ID}
+                    docker rmi giaple/demogo:${env.BUILD_ID}
                     """
                 }
             }
         }        
         stage('Deploy to Kubenetes-Local') {
             steps{
-                sh "sed -i 's/demogo:latest/demogo:$(awk -F":" '{print $NF}' version)/g' deployment.yaml"
+                sh "sed -i 's/demogo:latest/demogo:${env.BUILD_ID})/g' deployment.yaml"
                 sh "kubectl apply -f deployment.yaml"
             }
         }
