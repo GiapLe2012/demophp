@@ -21,15 +21,15 @@ metadata:
   labels:
     app: php-example-2
 spec:
-   replicas: 1
-   selector:
+  replicas: 1
+  selector:
     matchLabels:
       app: php-example-2
-   template:
-     metadata:
-      labels:
-        app: php-example-2
-      spec:
+  template:
+    metadata:
+    labels:
+     app: php-example-2
+     spec:
        imagePullSecrets:
        - name: pipeline-docker-registry
        containers:
