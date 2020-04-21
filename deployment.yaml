@@ -21,28 +21,33 @@ metadata:
   labels:
     app: php-example-2
 spec:
-  replicas: 1
-  selector:
+   replicas: 1
+   selector:
     matchLabels:
       app: php-example-2
-  template:
-    metadata:
+   template:
+   metadata:
       labels:
-        app: php-example-2
-    spec:
+         app: php-example-2
+   spec:
       imagePullSecrets:
       - name: pipeline-docker-registry
       containers:
-      - env: 
-        - name: CID
-          value: vn
+        envFrom:
+          - configMapRef:
+            name: env-variables
+        env: 
+         - name: CID
+           value: vn
+         - name: HELLO_WORLD
+           value: $(HELLO)_$(WORLD)
         image: giaple/demogo:latest
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
           httpGet:
             path: /
-            port: 80
+            port: $port
             scheme: HTTP
           initialDelaySeconds: 200
           periodSeconds: 2
@@ -50,5 +55,5 @@ spec:
           timeoutSeconds: 2
         name: te-k8s-php-example-2
         ports:
-        - containerPort: 80
+        - containerPort: $port
 
