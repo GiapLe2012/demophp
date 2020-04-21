@@ -26,7 +26,7 @@ spec:
     matchLabels:
       app: php-example-2
    template:
-   metadata:
+    metadata:
       labels:
          app: php-example-2
    spec:
