@@ -27,8 +27,8 @@ spec:
       app: php-example-2
   template:
     metadata:
-    labels:
-     app: php-example-2
+     labels:
+      app: php-example-2
      spec:
        imagePullSecrets:
        - name: pipeline-docker-registry
