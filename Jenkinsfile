@@ -34,7 +34,6 @@ pipeline {
         stage('Deploy to Kubenetes-Local') {
             steps{
                 sh "sed -i 's/demogo:latest/demogo:${env.BUILD_ID})/g' deployment.yaml"
-                sh "kubectl create configmap env-variables --from-env-file .env"
                 sh "kubectl apply -f deployment.yaml"
             }
         }
