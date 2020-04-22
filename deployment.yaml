@@ -29,31 +29,31 @@ spec:
     metadata:
      labels:
       app: php-example-2
-     spec:
-       imagePullSecrets:
-       - name: pipeline-docker-registry
-       containers:
-         envFrom:
-           - configMapRef:
-             name: env-variables
-         env: 
-          - name: CID
-            value: vn
-          - name: HELLO_WORLD
-            value: $(HELLO)_$(WORLD)
-         image: giaple/demogo:latest
-         imagePullPolicy: Always
-         livenessProbe:
-           failureThreshold: 3
-           httpGet:
-             path: /
-             port: $port
-             scheme: HTTP
-           initialDelaySeconds: 200
-           periodSeconds: 2
-           successThreshold: 1
-           timeoutSeconds: 2
-         name: te-k8s-php-example-2
-         ports:
-         - containerPort: $port
+      spec:
+        imagePullSecrets:
+        - name: pipeline-docker-registry
+        containers:
+          envFrom:
+            - configMapRef:
+              name: env-variables
+          env: 
+           - name: CID
+             value: vn
+           - name: HELLO_WORLD
+             value: $(HELLO)_$(WORLD)
+          image: giaple/demogo:latest
+          imagePullPolicy: Always
+          livenessProbe:
+             failureThreshold: 3
+             httpGet:
+               path: /
+               port: $port
+               scheme: HTTP
+            initialDelaySeconds: 200
+            periodSeconds: 2
+            successThreshold: 1
+            timeoutSeconds: 2
+          name: te-k8s-php-example-2
+          ports:
+          - containerPort: $port
 
