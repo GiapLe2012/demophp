@@ -33,7 +33,7 @@ spec:
       imagePullSecrets:
       - name: pipeline-docker-registry
       containers:
-        envFrom:
+        valueFrom:
           - configMapRef:
             name: env-variables
         env: 
