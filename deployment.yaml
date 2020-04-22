@@ -26,8 +26,8 @@ spec:
     matchLabels:
       app: php-example-2
    template:
-    metadata:
-      labels:
+   metadata:
+     labels:
          app: php-example-2
    spec:
       imagePullSecrets:
