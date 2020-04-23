@@ -33,7 +33,7 @@ pipeline {
         }        
         stage('Deploy to Kubenetes-Local') {
             steps{
-                sh "sed -i 's/demogo:latest/demogo:${env.BUILD_ID})/g' deployment.yaml"
+                sh "sed -i 's/demogo:latest/demogo:${env.BUILD_ID}/g' deployment.yaml"
                 sh "kubectl apply -f deployment.yaml"
             }
         }
