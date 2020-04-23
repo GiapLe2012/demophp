@@ -21,26 +21,31 @@ metadata:
   labels:
     app: php-example-2
 spec:
-   replicas: 1
-   selector:
+  replicas: 1
+  selector:
     matchLabels:
       app: php-example-2
-   template:
+  template:
     metadata:
-     labels:
-         app: php-example-2
-   spec:
+      labels:
+        app: php-example-2
+    spec:
       imagePullSecrets:
       - name: pipeline-docker-registry
       containers:
-        valueFrom:
-          - configMapRef:
-            name: env-variables
-        env: 
-         - name: CID
-           value: vn
-         - name: HELLO_WORLD
-           value: $(HELLO)_$(WORLD)
+      - env: 
+        - name: CID
+          value: vn
+        - name: db-port
+          valueFrom:
+            configMapKeyRef:
+              key: db-port
+              name: env-demo
+        - name: server-port
+          valueFrom:
+            configMapKeyRef:
+              key: server-port
+              name: env-demo  
         image: giaple/demogo:latest
         imagePullPolicy: Always
         livenessProbe:
