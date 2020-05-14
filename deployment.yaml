@@ -31,12 +31,12 @@ spec:
         app: php-example-2
     spec:
       imagePullSecrets:
-      - name: registry.nganluong.vn:444
+      - name: registry.saobang.vn
       containers:
       - env: 
         - name: CID
           value: vn
-        image: registry.nganluong.vn:444/repository/demo-repo/php:latest
+        image: registry.saobang.vn/giaplv/php:latest
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
