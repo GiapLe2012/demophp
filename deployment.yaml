@@ -36,16 +36,6 @@ spec:
       - env: 
         - name: CID
           value: vn
-        - name: db-port
-          valueFrom:
-            configMapKeyRef:
-              key: db-port
-              name: env-demo
-        - name: server-port
-          valueFrom:
-            configMapKeyRef:
-              key: server-port
-              name: env-demo  
         image: giaple/demogo:latest
         imagePullPolicy: Always
         livenessProbe:

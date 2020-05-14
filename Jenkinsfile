@@ -15,7 +15,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    sh "docker login -u $user_registry -p $password_registry 192.168.11.44:8082"
+                    sh "docker login -u $user_registry -p $password_registry registry.nganluong.vn:444"
                     myapp = docker.build("giaple/demogo:${env.BUILD_ID}")
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker login -u $user_registry -p $password_registry 192.168.11.44:8082
+                    docker login -u $user_registry -p $password_registry registry.nganluong.vn:444
                     docker push giaple/demogo:${env.BUILD_ID}
                     docker rmi giaple/demogo:${env.BUILD_ID}
                     """
