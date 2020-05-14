@@ -36,7 +36,7 @@ spec:
       - env: 
         - name: CID
           value: vn
-        image: registry.nganluong.vn/repository/demo-repo/php:latest
+        image: registry.nganluong.vn:444/repository/demo-repo/php:latest
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3

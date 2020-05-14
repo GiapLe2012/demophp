@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh "docker login -u $user_registry -p $password_registry registry.nganluong.vn:444"
-                    myapp = docker.build("registry.nganluong.vn/repository/demo-repo/php:${env.BUILD_ID}")
+                    myapp = docker.build("registry.nganluong.vn:444/repository/demo-repo/php:${env.BUILD_ID}")
                 }
             }
         }
@@ -25,8 +25,8 @@ pipeline {
                 script {
                     sh """
                     docker login -u $user_registry -p $password_registry registry.nganluong.vn:444
-                    docker push registry.nganluong.vn/repository/demo-repo/php:${env.BUILD_ID}
-                    docker rmi registry.nganluong.vn/repository/demo-repo/php:${env.BUILD_ID}
+                    docker push registry.nganluong.vn:444/repository/demo-repo/php:${env.BUILD_ID}
+                    docker rmi registry.nganluong.vn:444/repository/demo-repo/php:${env.BUILD_ID}
                     """
                 }
             }
