@@ -15,8 +15,8 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    sh "docker login -u system -p Abcd@123 registry.saobang.vn"
-                    myapp = docker.build("registry.saobang.vn/giaplv/php:${env.BUILD_ID}")
+                    sh "docker login -u $user_registry -p $password_registry"
+                    myapp = docker.build("giaple/giaplv/php:${env.BUILD_ID}")
                 }
             }
         }
@@ -24,9 +24,9 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker login -u system -p Abcd@123 registry.saobang.vn
-                    docker push registry.saobang.vn/giaplv/php:${env.BUILD_ID}
-                    docker rmi registry.saobang.vn/giaplv/php:${env.BUILD_ID}
+                    docker login -u $user_registry -p $password_registry
+                    docker push giaple/giaplv/php:${env.BUILD_ID}
+                    docker rmi giaple/giaplv/php:${env.BUILD_ID}
                     """
                 }
             }
