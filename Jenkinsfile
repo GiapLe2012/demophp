@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh "docker login -u $user_registry -p $password_registry"
-                    myapp = docker.build("giaple/giaplv/php:${env.BUILD_ID}")
+                    myapp = docker.build("giaple/demo-php:${env.BUILD_ID}")
                 }
             }
         }
@@ -25,15 +25,15 @@ pipeline {
                 script {
                     sh """
                     docker login -u $user_registry -p $password_registry
-                    docker push giaple/giaplv/php:${env.BUILD_ID}
-                    docker rmi giaple/giaplv/php:${env.BUILD_ID}
+                    docker push giaple/demo-php:${env.BUILD_ID}
+                    docker rmi giaple/demo-php:${env.BUILD_ID}
                     """
                 }
             }
         }        
         stage('Deploy to Kubenetes-Local') {
             steps{
-                sh "sed -i 's/php:latest/php:${env.BUILD_ID}/g' deployment.yaml"
+                sh "sed -i 's/demo-php:latest/demo-php:${env.BUILD_ID}/g' deployment.yaml"
                 sh "kubectl apply -f deployment.yaml"
             }
         }

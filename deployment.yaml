@@ -36,7 +36,7 @@ spec:
       - env: 
         - name: CID
           value: vn
-        image: giaple/giaplv/php:latest
+        image: giaple/demo-php:latest
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
